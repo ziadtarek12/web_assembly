@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Go WASM on GitHub Pages</title>
+</head>
+<body>
+  <h1>Go WebAssembly Example</h1>
+  <p id="output">Click the button to see a message:</p>
+  <button onclick="sayHello()">Say Hello</button>
+  <script src="wasm_exec.js"></script>
+  <script>
+    const go = new Go();
+    WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+      go.run(result.instance);
+    });
+  </script>
+</body>
+</html>
